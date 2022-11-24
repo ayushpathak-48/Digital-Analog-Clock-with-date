@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+
+            <div class="circle circle1" id="sc" style="--clr:#04fc43"><i></i></div>
+            <div class="circle circle2" id="mn" style="--clr:#fee800"><i></i></div>
+            <div class="circle circle3" id="hr" style="--clr:#ff2972"><i></i></div>
+
+            <span style="--i:1;"><b>1</b></span>
+            <span style="--i:2;"><b>2</b></span>
+            <span style="--i:3;"><b>3</b></span>
+            <span style="--i:4;"><b>4</b></span>
+            <span style="--i:5;"><b>5</b></span>
+            <span style="--i:6;"><b>6</b></span>
+            <span style="--i:7;"><b>7</b></span>
+            <span style="--i:8;"><b>8</b></span>
+            <span style="--i:9;"><b>9</b></span>
+            <span style="--i:10;"><b>10</b></span>
+            <span style="--i:11;"><b>11</b></span>
+            <span style="--i:12;"><b>12</b></span>
+        </div>
+
+        <div id="time">
+            <div id="hour" style="--clr:#04fc43">00</div>
+            <div id="minutes" style="--clr:#fee800">00</div>
+            <div id="seconds" style="--clr:#ff2972">00</div>
+            <div id="ampm"></div>
+        </div>
+    </div>
+    <div id="date">
+        <div id="dd" style="--clr:#04fc43">20</div>
+        <div id="mm" style="--clr:#fee800">11</div>
+        <div id="yy" style="--clr:#ff2972">2022</div>
+        <div id="day">Sunday</div>
+    </div>
+    <script>
+        let hr = document.querySelector("#hr");
+        let mn = document.querySelector("#mn");
+        let sc = document.querySelector("#sc");
+
+        setInterval(() => {
+            let day = new Date();
+            let hh = day.getHours() * 30;
+            let mm = day.getMinutes() * 6;
+            let ss = day.getSeconds() * 6;
+            hr.style.display = "flex";
+            mn.style.display = "flex";
+            sc.style.display = "flex";
+            hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
+            mn.style.transform = `rotateZ(${mm}deg)`;
+            sc.style.transform = `rotateZ(${ss}deg)`;
+
+
+            let hours = document.getElementById('hour');
+            let minutes = document.getElementById('minutes');
+            let seconds = document.getElementById('seconds');
+            let ampm = document.getElementById('ampm');
+
+            let h = new Date().getHours();
+            let m = new Date().getMinutes();
+            let s = new Date().getSeconds();
+            h = (h > 12 ? h - 12 : h);
+            h = (h <= 9 ? '0' + h : h);
+            s = (s <= 9 ? '0' + s : s);
+            m = (m <= 9 ? '0' + m : m);
+            am = (hr >= 9 ? 'AM' : 'PM');
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am;
+            let date = document.getElementById("dd");
+            let month = document.getElementById("mm");
+            let year = document.getElementById("yy");
+            let weekDay = document.getElementById("day");
+
+            let dd = new Date().getDate();
+            let mon = new Date().getMonth();
+            let yr = new Date().getFullYear();
+            const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
+            let wkdy = weekday[day.getDay()];
+            weekDay.innerHTML = wkdy;
+            date.innerHTML = dd;
+            month.innerHTML = mon + 1;
+            year.innerHTML = yr;
+            // let mn = new Date().getMonth();
+        }, 1000);
+    </script>
+</body>
+
+</html>
